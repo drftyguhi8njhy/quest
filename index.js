@@ -1,10 +1,16 @@
-function findTheDifference(s, t) {
-  let result = 0;
-  for (const char of s) {
-    result ^= char.charCodeAt(0);
+const quickSort = (arr) => {
+  if (arr.length <= 1) {
+    return arr;
   }
-  for (const char of t) {
-    result ^= char.charCodeAt(0);
+  const pivot = arr[arr.length - 1];
+  const left = [];
+  const right = [];
+  for (let i = 0; i < arr.length - 1; i++) {
+    if (arr[i] < pivot) {
+      left.push(arr[i]);
+    } else {
+      right.push(arr[i]);
+    }
   }
-  return String.fromCharCode(result);
-}
+  return quickSort(left).concat(pivot, quickSort(right));
+};
